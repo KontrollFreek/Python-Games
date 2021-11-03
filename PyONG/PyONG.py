@@ -1,5 +1,4 @@
 import turtle
-import os
 import winsound
 
 win = turtle.Screen()
