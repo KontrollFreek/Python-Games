@@ -92,15 +92,11 @@ while True:
     if ball.ycor() > 280:
         ball.sety(280)
         ball.dy *= -1
-        os.system('afplay bounce.wav&')
-        os.system('aplay bounce.wav&')
         winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
     
     if ball.ycor() < -280:
         ball.sety(-280)
         ball.dy *= -1
-        os.system('afplay bounce.wav&')
-        os.system('aplay bounce.wav&')
         winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
 
     if ball.xcor() > 480:
@@ -108,6 +104,7 @@ while True:
         ball.dx *= -1
         ball.dy *= -1
         score1 += 1
+        winsound.PlaySound('offscreen.wav', winsound.SND_ASYNC)
         pen.clear()
         pen.write('Player 1: {}  Player 2: {}'.format(score1, score2), align='center', font=('Courier', 24, 'bold'))
 
@@ -116,6 +113,7 @@ while True:
         ball.dx *= -1
         ball.dy *= -1
         score2 += 1
+        winsound.PlaySound('offscreen.wav', winsound.SND_ASYNC)
         pen.clear()
         pen.write('Player 1: {}  Player 2: {}'.format(score1, score2), align='center', font=('Courier', 24, 'bold'))
 
@@ -136,7 +134,9 @@ while True:
     if (ball.xcor() > 380 and ball.xcor() < 410) and (ball.ycor() < pad2.ycor() + 40 and ball.ycor() > pad2.ycor() -40):
         ball.setx(380)
         ball.dx *= -1
+        winsound.PlaySound('paddle.wav', winsound.SND_ASYNC)
 
     if (ball.xcor() < -380 and ball.xcor() > -410) and (ball.ycor() < pad1.ycor() + 40 and ball.ycor() > pad1.ycor() -40):
         ball.setx(-380)
         ball.dx *= -1
+        winsound.PlaySound('paddle.wav', winsound.SND_ASYNC)
