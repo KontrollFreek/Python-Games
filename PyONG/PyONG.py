@@ -1,6 +1,8 @@
 import turtle
 import winsound
+import time
 
+# Draw Screen
 win = turtle.Screen()
 win.title('PyONG')
 win.bgcolor('black')
@@ -39,7 +41,7 @@ ball.goto(0, 0)
 ball.dx = 0.14
 ball.dy = 0.14
 
-# Pem
+# Pen
 pen = turtle.Turtle()
 pen.speed(0)
 pen.color('white')
@@ -91,28 +93,25 @@ while True:
     if ball.ycor() > 280:
         ball.sety(280)
         ball.dy *= -1
-        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
     
     if ball.ycor() < -280:
         ball.sety(-280)
         ball.dy *= -1
-        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
 
     if ball.xcor() > 480:
-        ball.goto(0, 0)
+        ball.goto(0,0)
         ball.dx *= -1
-        ball.dy *= -1
         score1 += 1
-        winsound.PlaySound('offscreen.wav', winsound.SND_ASYNC)
+        winsound.PlaySound("offscreen.wav", winsound.SND_ASYNC)
         pen.clear()
         pen.write('Player 1: {}  Player 2: {}'.format(score1, score2), align='center', font=('Courier', 24, 'bold'))
-
     if ball.xcor() < -480:
-        ball.goto(0, 0)
+        ball.goto(0,0)
         ball.dx *= -1
-        ball.dy *= -1
         score2 += 1
-        winsound.PlaySound('offscreen.wav', winsound.SND_ASYNC)
+        winsound.PlaySound("offscreen.wav", winsound.SND_ASYNC)
         pen.clear()
         pen.write('Player 1: {}  Player 2: {}'.format(score1, score2), align='center', font=('Courier', 24, 'bold'))
 
@@ -133,9 +132,34 @@ while True:
     if (ball.xcor() > 380 and ball.xcor() < 410) and (ball.ycor() < pad2.ycor() + 40 and ball.ycor() > pad2.ycor() -40):
         ball.setx(380)
         ball.dx *= -1
-        winsound.PlaySound('paddle.wav', winsound.SND_ASYNC)
+        winsound.PlaySound("paddle.wav", winsound.SND_ASYNC)
 
     if (ball.xcor() < -380 and ball.xcor() > -410) and (ball.ycor() < pad1.ycor() + 40 and ball.ycor() > pad1.ycor() -40):
         ball.setx(-380)
         ball.dx *= -1
-        winsound.PlaySound('paddle.wav', winsound.SND_ASYNC)
+        winsound.PlaySound("paddle.wav", winsound.SND_ASYNC)
+
+    #Score Detector
+    if (score2 == 7):
+        pen.clear()
+        pen.goto(0,-40)
+        pad1.goto(0,-500)
+        pad2.goto(0,500)
+        ball.goto(0,100)
+        ball.color('black')
+        ball.dx = 0
+        ball.dy = 0
+        pen.write('Player 2 Wins!', align='center', font=('Courier', 72, 'bold'))
+
+    if (score1 == 7):
+        pen.clear()
+        pen.goto(0,-40)
+        pad1.goto(0,-500)
+        pad2.goto(0,500)
+        ball.goto(0,100)
+        ball.color('black')
+        ball.dx = 0
+        ball.dy = 0
+        pen.write('Player 2 Wins!', align='center', font=('Courier', 72, 'bold'))
+
+
